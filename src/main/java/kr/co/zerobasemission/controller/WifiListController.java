@@ -1,4 +1,6 @@
-package kr.co.zerobasemission.wifi;
+package kr.co.zerobasemission.controller;
+
+import kr.co.zerobasemission.service.WifiService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -6,18 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "wifiListController", urlPatterns = "/wifi/list")
 public class WifiListController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("/todo/list");
-
         String list = WifiService.INSTANCE.getTotalNumber();
-        WifiService.INSTANCE.test();
-
+        WifiService.INSTANCE.registerDB();
         req.setAttribute("list", list);
 
         req.getRequestDispatcher("/WEB-INF/wifi/list.jsp").forward(req, resp);

@@ -1,23 +1,16 @@
-package kr.co.zerobasemission.wifi;
+package kr.co.zerobasemission.service;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.squareup.okhttp.*;
+import kr.co.zerobasemission.dao.WifiDAO;
+import kr.co.zerobasemission.dto.WifiDTO;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public enum WifiService {
     INSTANCE;
@@ -27,10 +20,10 @@ public enum WifiService {
         return makeAPIUrl(1, 1).getJSONObject("TbPublicWifiInfo").get("list_total_count").toString();
     }
 
-    public void registerDB(int end) throws IOException {
+    public void registerDB() throws IOException {
         int totalNumber = Integer.parseInt(getTotalNumber());
 
-        JSONObject jsonObject = makeAPIUrl(1, totalNumber);
+        JSONObject jsonObject = makeAPIUrl(1, 15);
 
         JSONArray jsonArray = jsonObject.getJSONObject("TbPublicWifiInfo").getJSONArray("row");
 
@@ -41,6 +34,9 @@ public enum WifiService {
             Gson gson = new Gson();
             WifiDTO wifiDTO = gson.fromJson(rowObject.toString(), WifiDTO.class);
             wifiDTOS.add(wifiDTO);
+        }
+        for (int i = 0; i < 10; i++) {
+            new WifiDAO().insert(wifiDTOS.get(i));
         }
 
     }
