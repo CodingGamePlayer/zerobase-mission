@@ -14,9 +14,7 @@
 <body>
 
 <ul>
-    <c:forEach var="dto" items="${list}">
-        <li>${dto}</li>
-    </c:forEach>
+    ${list}
 </ul>
 </body>
 </html>

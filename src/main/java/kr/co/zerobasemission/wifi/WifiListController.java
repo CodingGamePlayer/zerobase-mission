@@ -15,10 +15,10 @@ public class WifiListController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("/todo/list");
 
-        List<WifiDTO> dtoList = WifiService.INSTANCE.getList();
+        String list = WifiService.INSTANCE.getTotalNumber();
         WifiService.INSTANCE.test();
 
-        req.setAttribute("list", dtoList);
+        req.setAttribute("list", list);
 
         req.getRequestDispatcher("/WEB-INF/wifi/list.jsp").forward(req, resp);
     }
