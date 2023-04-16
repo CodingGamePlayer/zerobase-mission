@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class WifiDTO {
-
+    private int wifi_id;
     private String X_SWIFI_MGR_NO; // 관리번호
     private String X_SWIFI_WRDOFC;
     private String X_SWIFI_MAIN_NM;
@@ -26,6 +26,13 @@ public class WifiDTO {
     private String LAT;
     private String LNT;
     private String WORK_DTTM;
+    public int getWifi_id() {
+        return wifi_id;
+    }
+
+    public void setWifi_id(int wifi_id) {
+        this.wifi_id = wifi_id;
+    }
 
     public String getX_SWIFI_MGR_NO() {
         return X_SWIFI_MGR_NO;

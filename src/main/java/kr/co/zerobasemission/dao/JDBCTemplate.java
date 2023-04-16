@@ -17,6 +17,7 @@ public class JDBCTemplate {
             Statement stmt = conn.createStatement();
 
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS wifi_info(" +
+                    "wifi_id integer, " +
                     "X_SWIFI_MGR_NO string, " +
                     "X_SWIFI_WRDOFC string, " +
                     "X_SWIFI_MAIN_NM string, " +
@@ -35,7 +36,24 @@ public class JDBCTemplate {
                     "WORK_DTTM string" +
                     ")");
 
-            System.out.println("DB Connect Success!");
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS bookmark(" +
+                    "bm_id, " +
+                    "gr_id, " +
+                    "X_SWIFI_MGR_NO" +
+                    ")");
+
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS bookmark_group(" +
+                    "gr_id, " +
+                    "gr_name" +
+                    ")");
+
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS position_history(" +
+                    "ph_id, " +
+                    "ph_x, " +
+                    "ph_y," +
+                    "ph_date" +
+                    ")");
+
 
         } catch (Exception e) {
             System.err.println("Exception occurred in " + e.getClass().getName() + ": " + e.getMessage());

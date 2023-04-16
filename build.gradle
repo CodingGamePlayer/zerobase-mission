@@ -27,18 +27,39 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
-    // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
+    // SQLite 연결을 위한 의존성
     implementation 'org.xerial:sqlite-jdbc:3.41.2.1'
-    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+
+    // Lombok 및 Log4j2 사용을 위한 의존성
     compileOnly 'org.projectlombok:lombok:1.18.26'
-    // https://mvnrepository.com/artifact/javax.servlet/jstl
+    testCompileOnly 'org.projectlombok:lombok:1.18.26'
+    // annotationProcessor가 없으면 log4js 어노테이션 사용이 안됨
+    annotationProcessor('org.projectlombok:lombok:1.18.26')
+    testAnnotationProcessor('org.projectlombok:lombok:1.18.26')
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0'
+
+    // JSTL 사용하기 위한 의존성
     implementation 'javax.servlet:jstl:1.2'
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+
+    // OpenApi 데이터를 들고 오기 위한 의존성
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
     implementation group: 'com.squareup.okhttp', name: 'okhttp', version: '2.7.5'
-    // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'org.json:json:20230227'
+
+
+    // 클래스타입 변환을 쉽게 하기위한 의존성
+    implementation 'org.modelmapper:modelmapper:3.1.1'
+
+
+    implementation 'org.springframework:spring-core:5.3.19'
+    implementation 'org.springframework:spring-context:5.3.19'
+    implementation 'org.springframework:spring-test:5.3.19'
+    implementation 'org.springframework:spring-webmvc:5.3.19'
+
+
 }
 
 test {
